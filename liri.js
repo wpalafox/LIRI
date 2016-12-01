@@ -27,13 +27,13 @@ switch(command[0]){
 	myTweets();
 	break;
 
-	/*case "spotify-this-song":
+	case "spotify-this-song":
 	goSpotify();
-	break;  */
+	break;  
 
 	default:
 	console.log("err");
-
+	console.log("Oops");
 }
 
 
@@ -72,20 +72,20 @@ client.get('statuses/user_timeline', params, function(error, tweets, response){
 
 //SPOTIFY
 
- /*function goSpotify() {
+ function goSpotify() {
 
 	/*spotify.search({ type: 'track', query: 'dancing in the moonlight' }, function(err, data) {
     	if ( err ) {
         	console.log('Error occurred: ' + err);
         	return;
-    	} 
+    	}  */
 
-	console.log("test"); 
-
-
+	console.log("Woooooo"); 
 
 
 
 
-}; */
+
+
+}; 
 
