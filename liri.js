@@ -38,7 +38,7 @@ switch(command[0]){
 
 
 //Functions 
-/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 //TWITTER 
@@ -64,10 +64,10 @@ client.get('statuses/user_timeline', params, function(error, tweets, response){
 		
 		//Loop through the last 20 tweets and stamp the date add 
 		for(i=0; i < 20; i++){
-			console.log(i+ 1 + ". "+tweets[i].text+"\n"+"    Date: "+tweets[i].created_at);
-
+			console.log(i+ 1 + ". "+tweets[i].text);  
+			console.log("Date: "+tweets[i].created_at);
 		}
-	
+		
 
 	}else{
 
@@ -79,7 +79,7 @@ client.get('statuses/user_timeline', params, function(error, tweets, response){
 
 }
 
-////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //SPOTIFY
 
@@ -87,7 +87,7 @@ client.get('statuses/user_timeline', params, function(error, tweets, response){
 
 	if (songName == undefined){
 
-		songName = "Barbie Girl"
+		songName = "The Sign"
 
 
 	}
@@ -98,10 +98,25 @@ client.get('statuses/user_timeline', params, function(error, tweets, response){
         	return;
     	
     	}else{
-    		var rawData = data.tracks.items;
+    		var response = data.tracks.items;
 
-    			
-    		console.log(rawData);
+
+    		console.log("Top 3 Search Results");
+    		for(s = 0; s < 3; s++){
+    		
+    		
+    			console.log(s+1+". ");
+    			console.log("Artist: "+ response[s].artists[0].name);
+    			console.log("Track Title: " + response[s].name);
+    			console.log("Preview Link: " + response[s].external_urls.spotify);
+    			console.log("Album: "+ response[s].album.name);
+
+    		
+    		
+
+
+
+    			}
 
 
 
@@ -110,3 +125,4 @@ client.get('statuses/user_timeline', params, function(error, tweets, response){
 		}); 
 
 	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
