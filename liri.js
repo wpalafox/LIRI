@@ -36,6 +36,9 @@ client.get('statuses/user_timeline', params, function(error, tweets, response){
 	if (!error){
 		console.log("##########################################################################")
 		//Loop through the last 20 tweets and stamp the date add 
+		
+
+		console.log('Last 20 Tweets')
 		for(i=0; i < 20; i++){
 			console.log(i+ 1 + ". "+tweets[i].text);  
 			console.log("Date: "+tweets[i].created_at);
@@ -123,6 +126,7 @@ function goMovie(movieName){
 	  	var movieData = JSON.parse(body);
 	    
 	    console.log("##########################################################################");
+	    console.log("Movie Information")
 	    console.log(movieData.Title); 
 	  	console.log(movieData.Year);
 	  	console.log(movieData.Title);
