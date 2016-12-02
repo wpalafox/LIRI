@@ -1,6 +1,7 @@
 //variables to call the information 
 //sets up 
 var fs = require("fs");
+var request = require('request');
 var twitter = require('twitter');
 var spotify = require('spotify');
 var keys = require("./keys.js");
@@ -28,7 +29,7 @@ switch(command[0]){
 	case "movie-this":
 		var movieName = "";
 		movieName = command[1];
-
+		goMovie(movieName);
 
 	default:
 		console.log("err");
@@ -126,3 +127,68 @@ client.get('statuses/user_timeline', params, function(error, tweets, response){
 
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+function goMovie(movieName){
+
+	if(movieName === undefined){
+
+
+		movieName = "Mr. Nobody";
+
+
+	}
+	
+
+	queryURL =  "http://www.omdbapi.com/?tomatoes=true&t=" + movieName,
+
+
+	request(queryURL, function (error, response, body) {
+  
+  if (!error && response.statusCode == 200) {
+    
+
+
+    console.log(body); 
+  
+
+
+
+	
+	}
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
