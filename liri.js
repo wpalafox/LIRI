@@ -31,6 +31,10 @@ switch(command[0]){
 		movieName = command[1];
 		goMovie(movieName);
 
+	case "do-what-it-says":
+		  doWhat(); 
+		  break;
+
 	default:
 		console.log("err");
 	
@@ -62,14 +66,14 @@ var client = new twitter({
 var params = {screen_name: 'thanksdude25'};
 client.get('statuses/user_timeline', params, function(error, tweets, response){
 	if (!error){
-		
+		console.log("##########################################################################")
 		//Loop through the last 20 tweets and stamp the date add 
 		for(i=0; i < 20; i++){
 			console.log(i+ 1 + ". "+tweets[i].text);  
 			console.log("Date: "+tweets[i].created_at);
 		}
 		
-
+		console.log("##########################################################################")
 	}else{
 
 		console.log(error);
@@ -145,50 +149,67 @@ function goMovie(movieName){
 
 	request(queryURL, function (error, response, body) {
   
-  if (!error && response.statusCode == 200) {
-    
+	  if (!error && response.statusCode == 200) {
+	    
+	  	var movieData = JSON.parse(body);
+	    console.log("##########################################################################");
+	    console.log(movieData.Title); 
+	  	console.log(movieData.Year);
+	  	console.log(movieData.Title);
+	  	console.log(movieData.imdbRating); 
+	  	console.log(movieData.Country);
+	  	console.log(movieData.Language);
+	  	console.log(movieData.Plot); 
+	  	console.log(movieData.Actors);
+	  	console.log(movieData.tomatoURL);
+	  	console.log("##########################################################################");
 
 
-    console.log(body); 
-  
+		
+		}});
+  	
+}
 
-
-
-	
-	}
-  })
-
-
-
-
-
-
-
-
-
-
-
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
+function doWhat(){
+
+	 fs.readFile("random.txt", "utf8", function(error, fileData) {
+        // Then split it by commas (to make it more readable)
+        var dataArr = fileData.split(',');
+        var controlWord = dataArr[0];
+        
+
+        switch (controlWord){
+            case "my-tweets":
+                myTweets();
+            	break;
+
+            case "spotify-this-song":
+                var songName="";
+                songName = dataArr[1];
+                goSpotify(songName);
+            	break;
+
+            case "movie-this":
+                var movieName="";
+                movieName = dataArr[1];
+                goMovie(movieName);
+            	break;
+
+            default:
+                
+                console.log("Do what it says has encountered an error");
+                //format c:
+        
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        	}
+    	});
 
 }
+
