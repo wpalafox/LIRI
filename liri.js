@@ -10,39 +10,7 @@ var twitterKeys = keys.twitterKeys;
 //var spotifyKeys = keys.spotifyKeys; 
 
 
-
-
-//Switch Logic to make commands 
-
-switch(command[0]){
-	
-	case "my-tweets":
-		myTweets();
-		break;
-
-	case "spotify-this-song":
-		var songName = "";
-		songName = command[1]
-		goSpotify(songName);
-		break;  
-
-	case "movie-this":
-		var movieName = "";
-		movieName = command[1];
-		goMovie(movieName);
-
-	case "do-what-it-says":
-		  doWhat(); 
-		  break;
-
-	default:
-		console.log("err");
-	
-}
-
-
-
-//Functions 
+//Functions for the switch cases to refer to
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -105,7 +73,7 @@ client.get('statuses/user_timeline', params, function(error, tweets, response){
     	}else{
     		var response = data.tracks.items;
 
-
+    		console.log("##########################################################################")
     		console.log("Top 3 Search Results");
     		for(s = 0; s < 3; s++){
     		
@@ -123,7 +91,7 @@ client.get('statuses/user_timeline', params, function(error, tweets, response){
 
     			}
 
-
+    		console.log("##########################################################################")
 
 			}
 
@@ -151,7 +119,9 @@ function goMovie(movieName){
   
 	  if (!error && response.statusCode == 200) {
 	    
+	    //Need to parse movieData or it will console.log as undefined
 	  	var movieData = JSON.parse(body);
+	    
 	    console.log("##########################################################################");
 	    console.log(movieData.Title); 
 	  	console.log(movieData.Year);
@@ -177,12 +147,13 @@ function goMovie(movieName){
 function doWhat(){
 
 	 fs.readFile("random.txt", "utf8", function(error, fileData) {
-        // Then split it by commas (to make it more readable)
+        //File data.split increases legibility 
         var dataArr = fileData.split(',');
         var controlWord = dataArr[0];
         
 
         switch (controlWord){
+            
             case "my-tweets":
                 myTweets();
             	break;
@@ -213,3 +184,31 @@ function doWhat(){
 
 }
 
+
+//Switch Logic to make commands 
+
+switch(command[0]){
+	
+	case "my-tweets":
+		myTweets();
+		break;
+
+	case "spotify-this-song":
+		var songName = "";
+		songName = command[1]
+		goSpotify(songName);
+		break;  
+
+	case "movie-this":
+		var movieName = "";
+		movieName = command[1];
+		goMovie(movieName);
+
+	case "do-what-it-says":
+		  doWhat(); 
+		  break;
+
+	default:
+		console.log("err");
+	
+}
